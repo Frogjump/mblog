@@ -13,7 +13,6 @@ public class BaseHandler extends Handler{
 
     public void handle(String target, HttpServletRequest request, HttpServletResponse response, boolean[] isHandled) {
         String webRoot = request.getContextPath();
-        String webName = webRoot.substring(1);
         request.setAttribute("base", webRoot);
         request.setAttribute("viewRoot", "/WEB-INF/themes");
         if (target.endsWith("admin") || target.endsWith("admin/"))
