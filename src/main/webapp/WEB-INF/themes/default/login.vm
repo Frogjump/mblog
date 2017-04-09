@@ -10,7 +10,7 @@
     </a>
     <h1>$!{site_welcomes}</h1>
     <hr>
-    <form action="$base/admin/postlogin" method="post">
+    <form action="$base/admin/login" method="post">
         <div id="message">
             #if($message)
                 <div class="alert alert-danger">$!{message}</div>
@@ -31,7 +31,7 @@
         </div>
 
         <div style="margin-top: 15px;">
-            <input type="submit" class="btn btn-success border" value="登录 Use it">
+            <input type="submit" id="btn-submit" class="btn btn-success border" value="登录 Use it">
 
             <div class="forgot">
                 <a href="$base/reg">
@@ -67,6 +67,26 @@
                     required : '<div class="alert alert-danger">请先输入用户名/密码再进行登录操作</div>'
                 }
             }
+        });
+
+        $('input[name=username]').focus(function (e) {
+            $('#message').html("");
+        });
+        $('#btn-submit').click(function (e) {
+            e.preventDefault();
+            var un = $('input[name=username]').val();
+            var pwd = $('input[name=password]').val();
+            if ($.trim(un) === '' || $.trim(pwd) === ''){
+                $('#message').html('<div class="alert alert-danger">用户名或密码不能为空</div>');
+                return;
+            }
+            $.post('${base}/admin/login', {'username': un, 'password': md5(pwd)}, function (ret) {
+                if (ret.code === "20"){
+                    location.href = "${base}/admin/index";
+                }else {
+                    $('#message').html('<div class="alert alert-danger">'+ret.message+'</div>');
+                }
+            },'json');
         });
     })
 </script>

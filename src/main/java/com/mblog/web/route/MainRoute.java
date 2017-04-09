@@ -1,7 +1,7 @@
 package com.mblog.web.route;
 
 import com.jfinal.config.Routes;
-import com.mblog.web.controller.LoginController;
+import com.mblog.web.controller.admin.LoginController;
 
 /**
  * Created by Administrator on 2017/4/7.

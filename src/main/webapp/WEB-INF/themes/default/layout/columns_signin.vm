@@ -30,9 +30,9 @@
 
 </head>
 <body class="sign">
-	#parse("${viewRoot}/default/inc/browse_tips.vm")
+	#parse("$!{viewRoot}/default/inc/browse_tips.vm")
 	
-	${screen_content}
+	$!{screen_content}
 		
 	<p class="small">
 		$!{site_copyright} <a href="http://www.miitbeian.gov.cn/" target="_blank">$!{site_icp}
