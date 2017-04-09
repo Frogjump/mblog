@@ -50,7 +50,7 @@
         <a href="$base/oauth/callback/call_douban" title="豆瓣帐号登录" rel="nofollow" class="douban"></a>
     </div>
 </div>
-
+<script type="text/javascript" src="$base/assets/admin/js/md5.min.js"></script>
 <script type="text/javascript">
     $(function(){
         $('form').validate({
@@ -69,7 +69,7 @@
             }
         });
 
-        $('input[name=username]').focus(function (e) {
+        $('input[name=username],input[name=password]').focus(function (e) {
             $('#message').html("");
         });
         $('#btn-submit').click(function (e) {

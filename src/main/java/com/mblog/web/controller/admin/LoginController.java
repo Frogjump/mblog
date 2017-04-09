@@ -23,13 +23,13 @@ public class LoginController extends Controller{
         if ("GET".equalsIgnoreCase(method)){
             render("login.vm");
         }else if ("POST".equalsIgnoreCase(method)){
-            String username = getAttrForStr("username");
-            String pwd = getAttrForStr("password");
+            String username = getPara("username");
+            String pwd = getPara("password");
             Map<String, String> ret = new HashMap<String, String>();
             User user = User.dao.findFirst("select * from mto_users where username = ?", username);
             if (user == null){
                 ret.put("code", "10");
-                ret.put("message", "用户名或密码不能为空");
+                ret.put("message", "用户名不存在");
                 renderJson(ret);
             }else {
                 if (pwd.equals(user.getStr("password"))){
